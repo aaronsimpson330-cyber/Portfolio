@@ -6,63 +6,87 @@
   <title>Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 100% 8px; /* baseline grid */
+    }
+
+    .grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: none;
+      background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px);
+      background-size: calc(100% / 6) 100%;
+      z-index: 9999;
+    }
+
+    .show-grid .grid-overlay {
+      display: block;
+    }
   </style>
 </head>
 <body class="bg-white text-black">
 
-  <main class="max-w-6xl mx-auto px-6">
+  <div class="grid-overlay"></div>
+
+  <main class="max-w-5xl mx-auto px-6">
 
     <!-- Header -->
-    <header class="py-20 grid grid-cols-12">
-      <div class="col-span-6">
+    <header class="py-24 grid grid-cols-6">
+      <div class="col-span-3">
         <h1 class="text-4xl tracking-tight">Aaron Simpson</h1>
       </div>
-      <div class="col-span-6 text-right text-sm text-gray-500">
-        Graphic Design Studio
+      <div class="col-span-3 text-right text-sm text-gray-500">
+        Graphic Designer
       </div>
     </header>
 
     <!-- Work Grid -->
-    <section class="grid grid-cols-12 gap-y-20 gap-x-6">
+    <section class="grid grid-cols-6 gap-y-24 gap-x-6">
 
-      <!-- Project -->
-      <div class="col-span-12 md:col-span-8 group">
+      <div class="col-span-6 md:col-span-4 group">
         <div class="overflow-hidden">
-          <img src="https://aaronsimpson330-cyber.github.io/Portfolio/Images/1200x800_Emails.png" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
+          <img src="https://via.placeholder.com/1200x800" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
         </div>
-        <div class="mt-3 flex justify-between text-sm">
+        <div class="mt-4 flex justify-between text-sm">
           <span>Brand Identity</span>
           <span class="text-gray-400">2026</span>
         </div>
       </div>
 
-      <div class="col-span-12 md:col-span-4 group md:mt-20">
+      <div class="col-span-6 md:col-span-2 md:mt-24 group">
         <div class="overflow-hidden">
           <img src="https://via.placeholder.com/600x800" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
         </div>
-        <div class="mt-3 flex justify-between text-sm">
+        <div class="mt-4 flex justify-between text-sm">
           <span>Poster Series</span>
           <span class="text-gray-400">2026</span>
         </div>
       </div>
 
-      <div class="col-span-12 md:col-span-6 group">
+      <div class="col-span-6 md:col-span-3 group">
         <div class="overflow-hidden">
           <img src="https://via.placeholder.com/800x600" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
         </div>
-        <div class="mt-3 flex justify-between text-sm">
+        <div class="mt-4 flex justify-between text-sm">
           <span>Campaign Design</span>
           <span class="text-gray-400">2025</span>
         </div>
       </div>
 
-      <div class="col-span-12 md:col-span-6 group md:mt-20">
+      <div class="col-span-6 md:col-span-3 md:mt-24 group">
         <div class="overflow-hidden">
           <img src="https://via.placeholder.com/800x600" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
         </div>
-        <div class="mt-3 flex justify-between text-sm">
+        <div class="mt-4 flex justify-between text-sm">
           <span>Editorial Layout</span>
           <span class="text-gray-400">2025</span>
         </div>
@@ -71,8 +95,8 @@
     </section>
 
     <!-- About -->
-    <section class="grid grid-cols-12 py-24 border-t mt-24">
-      <div class="col-span-12 md:col-span-6">
+    <section class="grid grid-cols-6 py-24 border-t mt-24">
+      <div class="col-span-6 md:col-span-3">
         <p class="text-lg leading-relaxed">
           A design studio focused on clarity, typography, and refined visual systems. We create timeless identities and digital experiences.
         </p>
@@ -80,10 +104,16 @@
     </section>
 
     <!-- Footer -->
-    <footer class="grid grid-cols-12 py-12 border-t text-sm text-gray-500">
-      <div class="col-span-6">your@email.com</div>
-      <div class="col-span-6 text-right">Instagram / Behance</div>
+    <footer class="grid grid-cols-6 py-16 border-t text-sm text-gray-500">
+      <div class="col-span-3">your@email.com</div>
+      <div class="col-span-3 text-right">Instagram / Behance</div>
     </footer>
+
+    <!-- Toggle Grid Button -->
+    <button onclick="document.body.classList.toggle('show-grid')"
+      class="fixed bottom-6 right-6 text-xs border px-3 py-1">
+      Grid
+    </button>
 
   </main>
 
