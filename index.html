@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aaron Simpson — Graphic Designer</title>
+  <title>Alex Mercer — Art Director &amp; Graphic Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -88,77 +88,100 @@
 
     /* HERO */
     #hero {
-      min-height: 100dvh;
+      position: relative;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 8rem 3rem 3rem;
-      position: relative;
+      justify-content: center;
+      padding: 0 3rem;
       overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset-block: 0;
+      right: 0;
+      width: 55vw;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition: filter 0.7s;
+    }
+    .hero-bg img:hover { filter: grayscale(0); }
+    .hero-bg-fade {
+      position: absolute;
+      inset-block: 0;
+      left: 0;
+      width: 10rem;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(5rem, 14vw, 12rem);
+      font-size: clamp(4.5rem, 13vw, 11rem);
       font-weight: 800;
       line-height: 0.85;
       text-transform: uppercase;
-      position: relative;
-      z-index: 2;
+      letter-spacing: -0.02em;
     }
     .hero-sub {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-top: 2rem;
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      z-index: 2;
-      position: relative;
     }
     .hero-sub::before {
       content: '';
       display: block;
-      width: 3rem;
+      width: 2.5rem;
       height: 2px;
       background: var(--primary);
       flex-shrink: 0;
     }
-    .hero-bg-img {
-      position: absolute;
-      top: 20%; right: 0;
-      width: 50vw; height: 65vh;
-      z-index: 0;
-      opacity: 0.7;
+    .hero-sub p {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: rgba(244,244,240,0.8);
     }
-    .hero-bg-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.7s; }
-    .hero-bg-img img:hover { filter: grayscale(0); }
-    .hero-footer {
+    .hero-meta {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      z-index: 2;
-      position: relative;
+      align-items: center;
+      gap: 2.5rem;
+      padding-top: 0.5rem;
     }
-    .hero-location { display: flex; flex-direction: column; gap: 0.2rem; }
+    .hero-location { display: flex; flex-direction: column; gap: 0.15rem; }
     .hero-location span:first-child {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
     }
-    .hero-location span:last-child { font-size: 0.9rem; font-weight: 500; }
-    .scroll-link {
+    .hero-location span:last-child { font-size: 0.875rem; font-weight: 500; }
+    .hero-divider { width: 1px; height: 2rem; background: var(--border); }
+    .hero-cta {
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       transition: color 0.2s;
     }
-    .scroll-link:hover { color: var(--primary); }
+    .hero-cta:hover { color: var(--primary); }
+    .hero-cta span { display: inline-block; transition: transform 0.2s; }
+    .hero-cta:hover span { transform: translateX(3px); }
 
     /* MARQUEE */
     .marquee-wrap {
@@ -412,8 +435,8 @@
       header { padding: 1.25rem 1.5rem; }
       header.scrolled { padding: 0.9rem 1.5rem; }
       nav { display: none; }
-      #hero { padding: 7rem 1.5rem 2rem; }
-      .hero-bg-img { width: 85vw; opacity: 0.3; }
+      #hero { padding: 0 1.5rem; }
+      .hero-bg { display: none; }
       #about { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
       .about-col-spacer { display: none; }
       #works { padding: 5rem 1.5rem; }
@@ -430,7 +453,7 @@
 <body>
 
   <header id="site-header">
-    <a href="#" class="logo">AS&#8212;STUDIO</a>
+    <a href="#" class="logo">AM&#8212;STUDIO</a>
     <nav>
       <a href="#about">About</a>
       <a href="#works">Works</a>
@@ -438,23 +461,29 @@
     </nav>
   </header>
 
+  <!-- HERO -->
   <section id="hero">
-    <div>
-      <h1 class="hero-title">Aaron<br><span class="text-stroke">Simpson</span></h1>
-      <p class="hero-sub">Graphic Designer</p>
+    <div class="hero-bg">
+      <img src="images/hero-abstract.png" alt="">
+      <div class="hero-bg-fade"></div>
     </div>
-    <div class="hero-bg-img">
-      <img src="images/hero-abstract.png" alt="Abstract graphic">
-    </div>
-    <div class="hero-footer">
-      <div class="hero-location">
-        <span>Based in</span>
-        <span>Bury St Edmunds</span>
+    <div class="hero-content">
+      <h1 class="hero-title">Alex<br><span class="text-stroke">Mercer</span></h1>
+      <div class="hero-sub">
+        <p>Independent Art Director &amp; Graphic Designer</p>
       </div>
-      <a href="#works" class="scroll-link">Scroll to explore &#8595;</a>
+      <div class="hero-meta">
+        <div class="hero-location">
+          <span>Based in</span>
+          <span>New York City</span>
+        </div>
+        <div class="hero-divider"></div>
+        <a href="#works" class="hero-cta">View work <span>&#8594;</span></a>
+      </div>
     </div>
   </section>
 
+  <!-- MARQUEE -->
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
       <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
@@ -469,6 +498,7 @@
     </div>
   </div>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="about-img fade-in">
       <img src="images/alex-mercer.png" alt="Alex Mercer">
@@ -491,13 +521,13 @@
     </div>
   </section>
 
+  <!-- WORKS -->
   <section id="works">
     <div class="works-header">
       <h2 class="works-title">Selected<br><span class="text-stroke">Works</span></h2>
       <p class="works-desc">A curated selection of projects spanning brand, digital, and print over the past few years.</p>
     </div>
     <div class="works-grid">
-
       <div class="project-card fade-in">
         <div class="project-img">
           <img src="images/project-1-coffee.png" alt="Caffeine Culture" loading="lazy">
@@ -508,7 +538,6 @@
           <span class="project-year">2024</span>
         </div>
       </div>
-
       <div class="project-card fade-in fade-in-d1">
         <div class="project-img">
           <img src="images/project-2-editorial.png" alt="Vogue Avant-Garde" loading="lazy">
@@ -519,7 +548,6 @@
           <span class="project-year">2023</span>
         </div>
       </div>
-
       <div class="project-card fade-in">
         <div class="project-img">
           <img src="images/project-3-motion.png" alt="Echo Dimensions" loading="lazy">
@@ -530,7 +558,6 @@
           <span class="project-year">2023</span>
         </div>
       </div>
-
       <div class="project-card fade-in fade-in-d1">
         <div class="project-img">
           <img src="images/project-4-packaging.png" alt="Aura Skincare" loading="lazy">
@@ -541,7 +568,6 @@
           <span class="project-year">2024</span>
         </div>
       </div>
-
       <div class="project-card fade-in">
         <div class="project-img">
           <img src="images/project-5-digital.png" alt="Nexus Platform" loading="lazy">
@@ -552,7 +578,6 @@
           <span class="project-year">2024</span>
         </div>
       </div>
-
       <div class="project-card fade-in fade-in-d1">
         <div class="project-img">
           <img src="images/project-6-poster.png" alt="Sonic Frequencies" loading="lazy">
@@ -563,7 +588,6 @@
           <span class="project-year">2022</span>
         </div>
       </div>
-
       <div class="project-card fade-in">
         <div class="project-img">
           <img src="images/project-7-wine.png" alt="Terroir Estates" loading="lazy">
@@ -574,7 +598,6 @@
           <span class="project-year">2023</span>
         </div>
       </div>
-
       <div class="project-card fade-in fade-in-d1">
         <div class="project-img">
           <img src="images/project-8-3dtype.png" alt="Liquid Chrome" loading="lazy">
@@ -585,13 +608,13 @@
           <span class="project-year">2024</span>
         </div>
       </div>
-
     </div>
     <div class="works-archive">
       <button class="btn-outline">View Archive</button>
     </div>
   </section>
 
+  <!-- PROCESS -->
   <section id="process">
     <h2 class="process-heading">The<br>Process</h2>
     <div class="process-steps">
@@ -618,17 +641,18 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <h2 class="contact-title">Let's<br>Talk</h2>
     <p class="contact-sub">Currently accepting new projects for Q3. If you have a vision that needs visualization, drop a line.</p>
-    <a href="mailto:aaron.design@hotmail.com" class="contact-email">aaron.design@hotmail.com</a>
+    <a href="mailto:hello@alexmercer.design" class="contact-email">hello@alexmercer.design</a>
     <div class="contact-footer">
       <div class="social-links">
-        <a href="#"></a>
-        <a href="#"></a>
-        <a href="#"></a>
+        <a href="#">Instagram</a>
+        <a href="#">Behance</a>
+        <a href="#">LinkedIn</a>
       </div>
-      <p class="copyright">&copy; 2026 Aaron Simpson. All rights reserved.</p>
+      <p class="copyright">&copy; 2026 Alex Mercer. All rights reserved.</p>
     </div>
   </section>
 
