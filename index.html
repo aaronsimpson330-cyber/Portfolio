@@ -3,120 +3,652 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <title>Aaron Simpson — Graphic Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #f4f4f0;
+      --primary: #ff3b00;
+      --muted: #999;
+      --card: #0f0f0f;
+      --border: #262626;
+      --font-display: 'Syne', sans-serif;
+      --font-sans: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-      background-image: linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
-      background-size: 100% 8px; /* baseline grid */
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .grid-overlay {
+    body::after {
+      content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
-      display: none;
-      background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px);
-      background-size: calc(100% / 6) 100%;
       z-index: 9999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    .show-grid .grid-overlay {
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; object-fit: cover; }
+
+    .text-stroke {
+      -webkit-text-stroke: 1.5px var(--fg);
+      color: transparent;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      transition: background 0.3s, padding 0.3s, border-bottom 0.3s;
+    }
+    header.scrolled {
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    nav { display: flex; gap: 2.5rem; }
+    nav a {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--primary); }
+
+    /* HERO */
+    #hero {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 8rem 3rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 14vw, 12rem);
+      font-weight: 800;
+      line-height: 0.85;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-sub {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      z-index: 2;
+      position: relative;
+    }
+    .hero-sub::before {
+      content: '';
       display: block;
+      width: 3rem;
+      height: 2px;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+    .hero-bg-img {
+      position: absolute;
+      top: 20%; right: 0;
+      width: 50vw; height: 65vh;
+      z-index: 0;
+      opacity: 0.7;
+    }
+    .hero-bg-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter 0.7s; }
+    .hero-bg-img img:hover { filter: grayscale(0); }
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 2;
+      position: relative;
+    }
+    .hero-location { display: flex; flex-direction: column; gap: 0.2rem; }
+    .hero-location span:first-child {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-location span:last-child { font-size: 0.9rem; font-weight: 500; }
+    .scroll-link {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .scroll-link:hover { color: var(--primary); }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--primary);
+      color: var(--bg);
+      padding: 1.25rem 0;
+      display: flex;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 22s linear infinite;
+      will-change: transform;
+      flex-shrink: 0;
+    }
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .marquee-track .sep { opacity: 0.5; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ABOUT */
+    #about {
+      display: grid;
+      grid-template-columns: 5fr 1fr 6fr;
+      gap: 2rem;
+      padding: 8rem 3rem;
+    }
+    .about-img { aspect-ratio: 3/4; overflow: hidden; }
+    .about-img img { height: 100%; }
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3rem;
+    }
+    .about-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .about-quote em {
+      color: var(--primary);
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .about-bio { font-size: 1.05rem; color: var(--muted); line-height: 1.8; max-width: 38rem; margin-top: 1.5rem; }
+    .capabilities-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      list-style: none;
+    }
+
+    /* WORKS */
+    #works { padding: 8rem 3rem; background: var(--card); }
+    .works-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+      gap: 2rem;
+    }
+    .works-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.9;
+    }
+    .works-desc { max-width: 22rem; font-size: 1.05rem; color: var(--muted); padding-bottom: 0.25rem; }
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 2rem;
+    }
+    .project-card { display: flex; flex-direction: column; gap: 1rem; }
+    .project-card:nth-child(even) { margin-top: 6rem; }
+    .project-img {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #1a1a1a;
+    }
+    .project-img img { height: 100%; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .project-card:hover .project-img img { transform: scale(1.05); }
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s;
+      z-index: 2;
+    }
+    .project-card:hover .project-overlay { background: rgba(10,10,10,0.25); }
+    .project-cta {
+      background: var(--primary);
+      color: var(--fg);
+      padding: 0.75rem 2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .project-card:hover .project-cta { opacity: 1; transform: translateY(0); }
+    .project-meta { display: flex; justify-content: space-between; align-items: flex-start; }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .project-card:hover .project-title { color: var(--primary); }
+    .project-cat { font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem; }
+    .project-year { font-family: monospace; font-size: 0.85rem; color: var(--muted); flex-shrink: 0; }
+    .works-archive { display: flex; justify-content: center; margin-top: 6rem; }
+    .btn-outline {
+      border: 1px solid var(--fg);
+      padding: 1.25rem 3rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      color: var(--fg);
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { background: var(--fg); color: var(--bg); }
+
+    /* PROCESS */
+    #process {
+      padding: 8rem 3rem;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 2rem;
+    }
+    .process-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1;
+      align-self: start;
+      padding-top: 0.5rem;
+    }
+    .process-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 4rem; }
+    .step-num { font-family: monospace; font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem; }
+    .step-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .step-desc { color: var(--muted); line-height: 1.7; }
+
+    /* CONTACT */
+    #contact {
+      padding: 8rem 3rem;
+      background: var(--primary);
+      color: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 2.5rem;
+    }
+    .contact-sub {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 500;
+      max-width: 36rem;
+      margin-bottom: 4rem;
+      opacity: 0.85;
+    }
+    .contact-email {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 2.5rem);
+      font-weight: 700;
+      border-bottom: 3px solid var(--bg);
+      padding-bottom: 0.25rem;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.7; }
+    .contact-footer {
+      width: 100%;
+      max-width: 72rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(10,10,10,0.2);
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .social-links { display: flex; gap: 2.5rem; }
+    .social-links a {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      transition: opacity 0.2s;
+    }
+    .social-links a:hover { opacity: 0.6; }
+    .copyright { font-family: monospace; font-size: 0.8rem; opacity: 0.55; }
+
+    /* FADE-IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(2.5rem);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-d1 { transition-delay: 0.1s; }
+    .fade-in-d2 { transition-delay: 0.2s; }
+    .fade-in-d3 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      header { padding: 1.25rem 1.5rem; }
+      header.scrolled { padding: 0.9rem 1.5rem; }
+      nav { display: none; }
+      #hero { padding: 7rem 1.5rem 2rem; }
+      .hero-bg-img { width: 85vw; opacity: 0.3; }
+      #about { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+      .about-col-spacer { display: none; }
+      #works { padding: 5rem 1.5rem; }
+      .works-header { flex-direction: column; align-items: flex-start; }
+      .works-grid { grid-template-columns: 1fr; }
+      .project-card:nth-child(even) { margin-top: 0; }
+      #process { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      #contact { padding: 5rem 1.5rem; }
+      .contact-footer { flex-direction: column; align-items: center; text-align: center; }
     }
   </style>
 </head>
-<body class="bg-white text-black">
+<body>
 
-  <div class="grid-overlay"></div>
+  <header id="site-header">
+    <a href="#" class="logo">AS&#8212;STUDIO</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <main class="max-w-5xl mx-auto px-6">
-
-    <!-- Header -->
-    <header class="py-24 grid grid-cols-6">
-      <div class="col-span-3">
-        <h1 class="text-4xl tracking-tight">Aaron Simpson</h1>
+  <section id="hero">
+    <div>
+      <h1 class="hero-title">Aaron<br><span class="text-stroke">Simpson</span></h1>
+      <p class="hero-sub">Graphic Designer</p>
+    </div>
+    <div class="hero-bg-img">
+      <img src="images/hero-abstract.png" alt="Abstract graphic">
+    </div>
+    <div class="hero-footer">
+      <div class="hero-location">
+        <span>Based in</span>
+        <span>Bury St Edmunds</span>
       </div>
-      <div class="col-span-3 text-right text-sm text-gray-500">
-        Graphic Designer
+      <a href="#works" class="scroll-link">Scroll to explore &#8595;</a>
+    </div>
+  </section>
+
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
+      <span>Technical Precision</span><span class="sep">&#10022;</span>
+      <span>Uncompromising Craft</span><span class="sep">&#10022;</span>
+      <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
+      <span>Technical Precision</span><span class="sep">&#10022;</span>
+      <span>Uncompromising Craft</span><span class="sep">&#10022;</span>
+      <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
+      <span>Technical Precision</span><span class="sep">&#10022;</span>
+      <span>Uncompromising Craft</span><span class="sep">&#10022;</span>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="about-img fade-in">
+      <img src="images/alex-mercer.png" alt="Alex Mercer">
+    </div>
+    <div class="about-col-spacer"></div>
+    <div class="about-content">
+      <div class="fade-in fade-in-d1">
+        <p class="about-quote">Design is not just what it looks like, it's how it makes you <em>feel</em>.</p>
+        <p class="about-bio">I am a multi-disciplinary designer specializing in brand identity, digital experiences, and motion design. For over a decade, I've partnered with visionary founders to build brands that refuse to be ignored. My approach is rooted in strategy, expressed through radical aesthetics, and refined through relentless attention to detail.</p>
       </div>
-    </header>
+      <div class="fade-in fade-in-d2">
+        <p class="capabilities-label">Capabilities</p>
+        <ul class="capabilities-grid">
+          <li>Brand Identity</li><li>Art Direction</li>
+          <li>Typography</li><li>UI/UX Design</li>
+          <li>Motion Graphics</li><li>Packaging</li>
+          <li>Editorial Design</li><li>3D Concepting</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Work Grid -->
-    <section class="grid grid-cols-6 gap-y-24 gap-x-6">
+  <section id="works">
+    <div class="works-header">
+      <h2 class="works-title">Selected<br><span class="text-stroke">Works</span></h2>
+      <p class="works-desc">A curated selection of projects spanning brand, digital, and print over the past few years.</p>
+    </div>
+    <div class="works-grid">
 
-      <div class="col-span-6 md:col-span-4 group">
-        <div class="overflow-hidden">
-          <img src="https://via.placeholder.com/1200x800" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <img src="images/project-1-coffee.png" alt="Caffeine Culture" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
         </div>
-        <div class="mt-4 flex justify-between text-sm">
-          <span>Brand Identity</span>
-          <span class="text-gray-400">2026</span>
+        <div class="project-meta">
+          <div><p class="project-title">Caffeine Culture</p><p class="project-cat">Branding &amp; Packaging</p></div>
+          <span class="project-year">2024</span>
         </div>
       </div>
 
-      <div class="col-span-6 md:col-span-2 md:mt-24 group">
-        <div class="overflow-hidden">
-          <img src="https://via.placeholder.com/600x800" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
+      <div class="project-card fade-in fade-in-d1">
+        <div class="project-img">
+          <img src="images/project-2-editorial.png" alt="Vogue Avant-Garde" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
         </div>
-        <div class="mt-4 flex justify-between text-sm">
-          <span>Poster Series</span>
-          <span class="text-gray-400">2026</span>
-        </div>
-      </div>
-
-      <div class="col-span-6 md:col-span-3 group">
-        <div class="overflow-hidden">
-          <img src="https://via.placeholder.com/800x600" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
-        </div>
-        <div class="mt-4 flex justify-between text-sm">
-          <span>Campaign Design</span>
-          <span class="text-gray-400">2025</span>
+        <div class="project-meta">
+          <div><p class="project-title">Vogue Avant-Garde</p><p class="project-cat">Editorial Design</p></div>
+          <span class="project-year">2023</span>
         </div>
       </div>
 
-      <div class="col-span-6 md:col-span-3 md:mt-24 group">
-        <div class="overflow-hidden">
-          <img src="https://via.placeholder.com/800x600" class="w-full transform transition duration-700 ease-out group-hover:scale-105" />
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <img src="images/project-3-motion.png" alt="Echo Dimensions" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
         </div>
-        <div class="mt-4 flex justify-between text-sm">
-          <span>Editorial Layout</span>
-          <span class="text-gray-400">2025</span>
+        <div class="project-meta">
+          <div><p class="project-title">Echo Dimensions</p><p class="project-cat">Motion Graphics</p></div>
+          <span class="project-year">2023</span>
         </div>
       </div>
 
-    </section>
-
-    <!-- About -->
-    <section class="grid grid-cols-6 py-24 border-t mt-24">
-      <div class="col-span-6 md:col-span-3">
-        <p class="text-lg leading-relaxed">
-          A design studio focused on clarity, typography, and refined visual systems. We create timeless identities and digital experiences.
-        </p>
+      <div class="project-card fade-in fade-in-d1">
+        <div class="project-img">
+          <img src="images/project-4-packaging.png" alt="Aura Skincare" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
+        </div>
+        <div class="project-meta">
+          <div><p class="project-title">Aura Skincare</p><p class="project-cat">Packaging</p></div>
+          <span class="project-year">2024</span>
+        </div>
       </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="grid grid-cols-6 py-16 border-t text-sm text-gray-500">
-      <div class="col-span-3">your@email.com</div>
-      <div class="col-span-3 text-right">Instagram / Behance</div>
-    </footer>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <img src="images/project-5-digital.png" alt="Nexus Platform" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
+        </div>
+        <div class="project-meta">
+          <div><p class="project-title">Nexus Platform</p><p class="project-cat">Digital UI/UX</p></div>
+          <span class="project-year">2024</span>
+        </div>
+      </div>
 
-    <!-- Toggle Grid Button -->
-    <button onclick="document.body.classList.toggle('show-grid')"
-      class="fixed bottom-6 right-6 text-xs border px-3 py-1">
-      Grid
-    </button>
+      <div class="project-card fade-in fade-in-d1">
+        <div class="project-img">
+          <img src="images/project-6-poster.png" alt="Sonic Frequencies" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
+        </div>
+        <div class="project-meta">
+          <div><p class="project-title">Sonic Frequencies</p><p class="project-cat">Print &amp; Typography</p></div>
+          <span class="project-year">2022</span>
+        </div>
+      </div>
 
-  </main>
+      <div class="project-card fade-in">
+        <div class="project-img">
+          <img src="images/project-7-wine.png" alt="Terroir Estates" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
+        </div>
+        <div class="project-meta">
+          <div><p class="project-title">Terroir Estates</p><p class="project-cat">Brand Identity</p></div>
+          <span class="project-year">2023</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in fade-in-d1">
+        <div class="project-img">
+          <img src="images/project-8-3dtype.png" alt="Liquid Chrome" loading="lazy">
+          <div class="project-overlay"><span class="project-cta">View Project</span></div>
+        </div>
+        <div class="project-meta">
+          <div><p class="project-title">Liquid Chrome</p><p class="project-cat">Experimental 3D</p></div>
+          <span class="project-year">2024</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="works-archive">
+      <button class="btn-outline">View Archive</button>
+    </div>
+  </section>
+
+  <section id="process">
+    <h2 class="process-heading">The<br>Process</h2>
+    <div class="process-steps">
+      <div class="fade-in">
+        <p class="step-num">01 /</p>
+        <h3 class="step-title">Discovery</h3>
+        <p class="step-desc">Deep diving into the brand's core truth, audience, and market landscape.</p>
+      </div>
+      <div class="fade-in fade-in-d1">
+        <p class="step-num">02 /</p>
+        <h3 class="step-title">Concept</h3>
+        <p class="step-desc">Exploring multiple divergent visual directions and strategic pathways.</p>
+      </div>
+      <div class="fade-in fade-in-d2">
+        <p class="step-num">03 /</p>
+        <h3 class="step-title">Refinement</h3>
+        <p class="step-desc">Selecting the strongest route and meticulously crafting every touchpoint.</p>
+      </div>
+      <div class="fade-in fade-in-d3">
+        <p class="step-num">04 /</p>
+        <h3 class="step-title">Delivery</h3>
+        <p class="step-desc">Producing robust guidelines, assets, and final production files.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="contact-title">Let's<br>Talk</h2>
+    <p class="contact-sub">Currently accepting new projects for Q3. If you have a vision that needs visualization, drop a line.</p>
+    <a href="mailto:aaron.design@hotmail.com" class="contact-email">aaron.design@hotmail.com</a>
+    <div class="contact-footer">
+      <div class="social-links">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </div>
+      <p class="copyright">&copy; 2026 Aaron Simpson. All rights reserved.</p>
+    </div>
+  </section>
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '-60px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
-
