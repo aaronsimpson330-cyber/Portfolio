@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aaron Simpson — Graphic Designer</title>
+  <title>Alex Mercer — Art Direction &amp; Graphic Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0a;
-      --fg: #f4f4f0;
-      --primary: #ff3b00;
-      --muted: #999;
-      --card: #0f0f0f;
-      --border: #262626;
-      --font-display: 'Syne', sans-serif;
-      --font-sans: 'DM Sans', sans-serif;
+      --bg: #f8f4ef;
+      --fg: #2a1d12;
+      --primary: #8b5230;
+      --muted: #7a6356;
+      --card: #f0e9e0;
+      --border: #d8cec4;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,22 +33,27 @@
       overflow-x: hidden;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
     a { color: inherit; text-decoration: none; }
     img { display: block; width: 100%; object-fit: cover; }
 
-    .text-stroke {
-      -webkit-text-stroke: 1.5px var(--fg);
-      color: transparent;
+    /* ORNAMENT */
+    .ornament {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--primary);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .ornament::before {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 1.75rem;
+      background: currentColor;
+      flex-shrink: 0;
     }
 
     /* HEADER */
@@ -59,29 +64,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 3rem;
-      transition: background 0.3s, padding 0.3s, border-bottom 0.3s;
+      padding: 1rem 3rem;
+      transition: background 0.3s, box-shadow 0.3s;
     }
     header.scrolled {
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 1rem 3rem;
+      background: rgba(248,244,239,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(42,29,18,.06);
     }
     .logo {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-    nav { display: flex; gap: 2.5rem; }
-    nav a {
-      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
       transition: color 0.2s;
     }
     nav a:hover { color: var(--primary); }
@@ -90,17 +93,18 @@
     #hero {
       position: relative;
       height: 100dvh;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 3rem;
+      padding: 5rem 3rem 3rem;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute;
       inset-block: 0;
       right: 0;
-      width: 55vw;
+      width: 52vw;
       z-index: 0;
     }
     .hero-bg img {
@@ -108,264 +112,228 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      opacity: 0.3;
       filter: grayscale(1);
-      opacity: 0.5;
-      transition: filter 0.7s;
     }
-    .hero-bg img:hover { filter: grayscale(0); }
     .hero-bg-fade {
       position: absolute;
       inset-block: 0;
       left: 0;
-      width: 10rem;
+      width: 12rem;
       background: linear-gradient(to right, var(--bg), transparent);
     }
     .hero-content {
       position: relative;
       z-index: 1;
+      max-width: 40rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
     }
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(4.5rem, 13vw, 11rem);
-      font-weight: 800;
-      line-height: 0.85;
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
+      font-size: clamp(2.8rem, 9vw, 6.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--fg);
     }
-    .hero-sub {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--primary);
     }
-    .hero-sub::before {
-      content: '';
-      display: block;
-      width: 2.5rem;
-      height: 2px;
-      background: var(--primary);
-      flex-shrink: 0;
-    }
-    .hero-sub p {
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: rgba(244,244,240,0.8);
-    }
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      padding-top: 0.5rem;
-    }
-    .hero-location { display: flex; flex-direction: column; gap: 0.15rem; }
-    .hero-location span:first-child {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .hero-location span:last-child { font-size: 0.875rem; font-weight: 500; }
-    .hero-divider { width: 1px; height: 2rem; background: var(--border); }
-    .hero-cta {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s;
-    }
-    .hero-cta:hover { color: var(--primary); }
-    .hero-cta span { display: inline-block; transition: transform 0.2s; }
-    .hero-cta:hover span { transform: translateX(3px); }
-
-    /* MARQUEE */
-    .marquee-wrap {
-      overflow: hidden;
+    .hero-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 28rem; }
+    .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .btn-primary {
       background: var(--primary);
       color: var(--bg);
-      padding: 1.25rem 0;
-      display: flex;
-      white-space: nowrap;
+      padding: 0.85rem 1.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
+      transition: opacity 0.2s;
     }
-    .marquee-track {
-      display: flex;
-      gap: 3rem;
-      animation: marquee 22s linear infinite;
-      will-change: transform;
-      flex-shrink: 0;
+    .btn-primary:hover { opacity: 0.88; }
+    .link-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      color: var(--muted);
+      transition: color 0.2s;
     }
-    .marquee-track span {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
+    .link-text:hover { color: var(--primary); }
+
+    /* DIVIDER */
+    .section-divider {
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 3rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      flex-shrink: 0;
-    }
-    .marquee-track .sep { opacity: 0.5; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      color: var(--muted);
     }
 
     /* ABOUT */
     #about {
-      display: grid;
-      grid-template-columns: 5fr 1fr 6fr;
-      gap: 2rem;
-      padding: 8rem 3rem;
-    }
-    .about-img { aspect-ratio: 3/4; overflow: hidden; }
-    .about-img img { height: 100%; }
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 3rem;
-    }
-    .about-quote {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-      font-weight: 700;
-      line-height: 1.2;
-    }
-    .about-quote em {
-      color: var(--primary);
-      font-family: Georgia, serif;
-      font-style: italic;
-      font-weight: 400;
-    }
-    .about-bio { font-size: 1.05rem; color: var(--muted); line-height: 1.8; max-width: 38rem; margin-top: 1.5rem; }
-    .capabilities-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.5rem;
-    }
-    .capabilities-grid {
+      padding: 6rem 3rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.75rem 2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      list-style: none;
+      gap: 4rem 6rem;
+      align-items: center;
+      max-width: 72rem;
+      margin: 0 auto;
     }
+    .about-img { aspect-ratio: 3/4; overflow: hidden; border-radius: 3px; box-shadow: 0 4px 20px rgba(42,29,18,.1); }
+    .about-img img { height: 100%; }
+    .about-text { display: flex; flex-direction: column; gap: 2rem; }
+    .about-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .about-quote em { font-style: italic; font-weight: 400; color: var(--primary); }
+    .about-bio { font-size: 0.95rem; color: var(--muted); line-height: 1.8; }
+    .disciplines-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .disciplines-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.5rem;
+      list-style: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .disciplines-grid li::before { content: '●'; font-size: 0.4em; color: var(--primary); margin-right: 0.5em; vertical-align: middle; }
 
     /* WORKS */
-    #works { padding: 8rem 3rem; background: var(--card); }
+    #works {
+      padding: 6rem 3rem;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
     .works-header {
+      max-width: 72rem;
+      margin: 0 auto 4rem;
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 5rem;
+      justify-content: space-between;
       gap: 2rem;
     }
     .works-title {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 9vw, 8rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      line-height: 0.9;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.15;
     }
-    .works-desc { max-width: 22rem; font-size: 1.05rem; color: var(--muted); padding-bottom: 0.25rem; }
+    .works-title em { font-style: italic; font-weight: 400; color: var(--primary); }
+    .works-desc { max-width: 18rem; font-size: 0.9rem; color: var(--muted); text-align: right; }
     .works-grid {
+      max-width: 72rem;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem 2rem;
+      gap: 3rem 2.5rem;
     }
-    .project-card { display: flex; flex-direction: column; gap: 1rem; }
-    .project-card:nth-child(even) { margin-top: 6rem; }
+    .project-card { display: flex; flex-direction: column; gap: 0.75rem; cursor: pointer; }
+    .project-card:nth-child(even) { margin-top: 5rem; }
     .project-img {
       position: relative;
       overflow: hidden;
+      border-radius: 3px;
       aspect-ratio: 4/3;
-      background: #1a1a1a;
+      background: var(--border);
     }
-    .project-img img { height: 100%; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
-    .project-card:hover .project-img img { transform: scale(1.05); }
+    .project-img img { height: 100%; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .project-card:hover .project-img img { transform: scale(1.04); }
     .project-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(10,10,10,0);
+      background: rgba(42,29,18,0);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.4s;
+      transition: background 0.35s;
       z-index: 2;
     }
-    .project-card:hover .project-overlay { background: rgba(10,10,10,0.25); }
+    .project-card:hover .project-overlay { background: rgba(42,29,18,0.12); }
     .project-cta {
-      background: var(--primary);
+      background: var(--bg);
       color: var(--fg);
-      padding: 0.75rem 2rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      border-radius: 2px;
       opacity: 0;
-      transform: translateY(1rem);
-      transition: opacity 0.4s, transform 0.4s;
+      transform: translateY(0.75rem);
+      transition: opacity 0.35s, transform 0.35s;
+      box-shadow: 0 2px 8px rgba(42,29,18,.15);
     }
     .project-card:hover .project-cta { opacity: 1; transform: translateY(0); }
-    .project-meta { display: flex; justify-content: space-between; align-items: flex-start; }
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      transition: color 0.2s;
-    }
+    .project-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding-top: 0.25rem; }
+    .project-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; line-height: 1.25; transition: color 0.2s; }
     .project-card:hover .project-title { color: var(--primary); }
-    .project-cat { font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem; }
-    .project-year { font-family: monospace; font-size: 0.85rem; color: var(--muted); flex-shrink: 0; }
-    .works-archive { display: flex; justify-content: center; margin-top: 6rem; }
+    .project-cat { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .project-year { font-family: monospace; font-size: 0.75rem; color: var(--muted); flex-shrink: 0; padding-top: 0.2rem; }
+    .works-cta { max-width: 72rem; margin: 4rem auto 0; display: flex; justify-content: center; }
     .btn-outline {
-      border: 1px solid var(--fg);
-      padding: 1.25rem 3rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      border: 1px solid rgba(42,29,18,0.35);
+      color: var(--muted);
+      padding: 0.85rem 2.25rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
       cursor: pointer;
       background: transparent;
-      color: var(--fg);
-      transition: background 0.3s, color 0.3s;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .btn-outline:hover { background: var(--fg); color: var(--bg); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
 
     /* PROCESS */
     #process {
-      padding: 8rem 3rem;
+      padding: 6rem 3rem;
       border-top: 1px solid var(--border);
+    }
+    .process-inner {
+      max-width: 72rem;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 4fr 8fr;
-      gap: 2rem;
+      grid-template-columns: 5fr 7fr;
+      gap: 4rem;
     }
     .process-heading {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      line-height: 1;
-      align-self: start;
-      padding-top: 0.5rem;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.2;
     }
-    .process-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 4rem; }
-    .step-num { font-family: monospace; font-size: 1.2rem; color: var(--primary); margin-bottom: 1rem; }
-    .step-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .step-desc { color: var(--muted); line-height: 1.7; }
+    .process-heading em { font-style: italic; font-weight: 400; color: var(--primary); }
+    .process-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .step-num { font-family: monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: var(--primary); margin-bottom: 0.75rem; }
+    .step-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
 
     /* CONTACT */
     #contact {
-      padding: 8rem 3rem;
-      background: var(--primary);
-      color: var(--bg);
+      padding: 6rem 3rem;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
+    .contact-inner {
+      max-width: 48rem;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -373,90 +341,65 @@
     }
     .contact-title {
       font-family: var(--font-display);
-      font-size: clamp(4rem, 12vw, 10rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 0.9;
-      margin-bottom: 2.5rem;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
     }
-    .contact-sub {
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
-      font-weight: 500;
-      max-width: 36rem;
-      margin-bottom: 4rem;
-      opacity: 0.85;
-    }
-    .contact-email {
-      font-family: var(--font-display);
-      font-size: clamp(1.2rem, 3vw, 2.5rem);
-      font-weight: 700;
-      border-bottom: 3px solid var(--bg);
-      padding-bottom: 0.25rem;
-      transition: opacity 0.2s;
-    }
-    .contact-email:hover { opacity: 0.7; }
+    .contact-title em { font-style: italic; font-weight: 400; color: var(--primary); }
+    .contact-sub { font-size: 0.95rem; color: var(--muted); line-height: 1.75; max-width: 30rem; margin-bottom: 2.5rem; }
     .contact-footer {
       width: 100%;
-      max-width: 72rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 6rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(10,10,10,0.2);
-      gap: 2rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      gap: 1rem;
       flex-wrap: wrap;
     }
-    .social-links { display: flex; gap: 2.5rem; }
-    .social-links a {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--bg);
-      transition: opacity 0.2s;
-    }
-    .social-links a:hover { opacity: 0.6; }
-    .copyright { font-family: monospace; font-size: 0.8rem; opacity: 0.55; }
+    .social-links { display: flex; gap: 1.75rem; }
+    .social-links a { font-size: 0.8rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    .social-links a:hover { color: var(--primary); }
+    .copyright { font-family: monospace; font-size: 0.7rem; color: var(--muted); }
 
     /* FADE-IN */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(2.5rem);
-      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
-    }
+    .fade-in { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .fade-in-d1 { transition-delay: 0.1s; }
-    .fade-in-d2 { transition-delay: 0.2s; }
-    .fade-in-d3 { transition-delay: 0.3s; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      header { padding: 1.25rem 1.5rem; }
-      header.scrolled { padding: 0.9rem 1.5rem; }
+    @media (max-width: 768px) {
+      header { padding: 0.9rem 1.25rem; }
       nav { display: none; }
-      #hero { padding: 0 1.5rem; }
       .hero-bg { display: none; }
-      #about { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
-      .about-col-spacer { display: none; }
-      #works { padding: 5rem 1.5rem; }
+      #hero { padding: 5rem 1.25rem 2rem; }
+      #about { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2.5rem; }
+      #works { padding: 4rem 1.25rem; }
       .works-header { flex-direction: column; align-items: flex-start; }
+      .works-desc { text-align: left; max-width: 100%; }
       .works-grid { grid-template-columns: 1fr; }
       .project-card:nth-child(even) { margin-top: 0; }
-      #process { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+      #process { padding: 4rem 1.25rem; }
+      .process-inner { grid-template-columns: 1fr; gap: 2rem; }
       .process-steps { grid-template-columns: 1fr; }
-      #contact { padding: 5rem 1.5rem; }
-      .contact-footer { flex-direction: column; align-items: center; text-align: center; }
+      #contact { padding: 4rem 1.25rem; }
+      .contact-footer { flex-direction: column; align-items: center; }
+      .section-divider { padding: 0.75rem 1.25rem; }
     }
   </style>
 </head>
 <body>
 
   <header id="site-header">
-    <a href="#" class="logo">AM&#8212;STUDIO</a>
+    <a href="#" class="logo">Aaron Simpson</a>
     <nav>
       <a href="#about">About</a>
-      <a href="#works">Works</a>
+      <a href="#works">Work</a>
+      <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -468,50 +411,33 @@
       <div class="hero-bg-fade"></div>
     </div>
     <div class="hero-content">
-      <h1 class="hero-title">Aaron<br><span class="text-stroke">Simpson</span></h1>
-      <div class="hero-sub">
-        <p>Graphic Designer</p>
-      </div>
-      <div class="hero-meta">
-        <div class="hero-location">
-          <span>Based in</span>
-          <span>Bury St Edmunds</span>
-        </div>
-        <div class="hero-divider"></div>
-        <a href="#works" class="hero-cta">View work <span>&#8594;</span></a>
+      <p class="ornament">Graphic Design</p>
+      <h1 class="hero-title">Designing brands<br><em>worth remembering.</em></h1>
+      <p class="hero-sub">Independent art director based in New York City, working with founders and studios to shape identities that endure.</p>
+      <div class="hero-actions">
+        <a href="#works" class="btn-primary">View Selected Work</a>
+        <a href="#contact" class="link-text">Get in touch</a>
       </div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
-      <span>Technical Precision</span><span class="sep">&#10022;</span>
-      <span>Uncompromising Craft</span><span class="sep">&#10022;</span>
-      <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
-      <span>Technical Precision</span><span class="sep">&#10022;</span>
-      <span>Uncompromising Craft</span><span class="sep">&#10022;</span>
-      <span>Bold Visual Instincts</span><span class="sep">&#10022;</span>
-      <span>Technical Precision</span><span class="sep">&#10022;</span>
-      <span>Uncompromising Craft</span><span class="sep">&#10022;</span>
-    </div>
-  </div>
+  <!-- DIVIDER -->
+  <div class="section-divider">Portfolio &mdash; Bury St Edmunds </div>
 
   <!-- ABOUT -->
   <section id="about">
     <div class="about-img fade-in">
       <img src="images/alex-mercer.png" alt="Alex Mercer">
     </div>
-    <div class="about-col-spacer"></div>
-    <div class="about-content">
-      <div class="fade-in fade-in-d1">
-        <p class="about-quote">Design is not just what it looks like, it's how it makes you <em>feel</em>.</p>
-        <p class="about-bio">I am a multi-disciplinary designer specializing in brand identity, digital experiences, and motion design. For over a decade, I've partnered with visionary founders to build brands that refuse to be ignored. My approach is rooted in strategy, expressed through radical aesthetics, and refined through relentless attention to detail.</p>
+    <div class="about-text">
+      <div class="fade-in delay-1">
+        <p class="ornament" style="margin-bottom:1.25rem">About</p>
+        <h2 class="about-quote">Design that speaks before <em>a word is read.</em></h2>
+        <p class="about-bio" style="margin-top:1rem">I am a multi-disciplinary designer with over a decade working at the intersection of strategy and aesthetics. I partner with ambitious founders and studios to build identities that hold meaning — in print, on screen, and in motion.</p>
       </div>
-      <div class="fade-in fade-in-d2">
-        <p class="capabilities-label">Capabilities</p>
-        <ul class="capabilities-grid">
+      <div class="fade-in delay-2">
+        <p class="disciplines-label">Disciplines</p>
+        <ul class="disciplines-grid">
           <li>Brand Identity</li><li>Art Direction</li>
           <li>Typography</li><li>UI/UX Design</li>
           <li>Motion Graphics</li><li>Packaging</li>
@@ -524,152 +450,114 @@
   <!-- WORKS -->
   <section id="works">
     <div class="works-header">
-      <h2 class="works-title">Selected<br><span class="text-stroke">Works</span></h2>
-      <p class="works-desc">A curated selection of projects spanning brand, digital, and print over the past few years.</p>
+      <div>
+        <p class="ornament" style="margin-bottom:1rem">Portfolio</p>
+        <h2 class="works-title">Selected <em>Works</em></h2>
+      </div>
+      <p class="works-desc">A curated selection across brand, digital, and print.</p>
     </div>
     <div class="works-grid">
       <div class="project-card fade-in">
-        <div class="project-img">
-          <img src="images/project-1-coffee.png" alt="Caffeine Culture" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Caffeine Culture</p><p class="project-cat">Branding &amp; Packaging</p></div>
-          <span class="project-year">2024</span>
-        </div>
+        <div class="project-img"><img src="images/project-1-coffee.png" alt="Caffeine Culture" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Caffeine Culture</p><p class="project-cat">Branding &amp; Packaging</p></div><span class="project-year">2024</span></div>
       </div>
-      <div class="project-card fade-in fade-in-d1">
-        <div class="project-img">
-          <img src="images/project-2-editorial.png" alt="Vogue Avant-Garde" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Vogue Avant-Garde</p><p class="project-cat">Editorial Design</p></div>
-          <span class="project-year">2023</span>
-        </div>
+      <div class="project-card fade-in delay-1">
+        <div class="project-img"><img src="images/project-2-editorial.png" alt="Vogue Avant-Garde" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Vogue Avant-Garde</p><p class="project-cat">Editorial Design</p></div><span class="project-year">2023</span></div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img">
-          <img src="images/project-3-motion.png" alt="Echo Dimensions" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Echo Dimensions</p><p class="project-cat">Motion Graphics</p></div>
-          <span class="project-year">2023</span>
-        </div>
+        <div class="project-img"><img src="images/project-3-motion.png" alt="Echo Dimensions" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Echo Dimensions</p><p class="project-cat">Motion Graphics</p></div><span class="project-year">2023</span></div>
       </div>
-      <div class="project-card fade-in fade-in-d1">
-        <div class="project-img">
-          <img src="images/project-4-packaging.png" alt="Aura Skincare" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Aura Skincare</p><p class="project-cat">Packaging</p></div>
-          <span class="project-year">2024</span>
-        </div>
+      <div class="project-card fade-in delay-1">
+        <div class="project-img"><img src="images/project-4-packaging.png" alt="Aura Skincare" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Aura Skincare</p><p class="project-cat">Packaging</p></div><span class="project-year">2024</span></div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img">
-          <img src="images/project-5-digital.png" alt="Nexus Platform" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Nexus Platform</p><p class="project-cat">Digital UI/UX</p></div>
-          <span class="project-year">2024</span>
-        </div>
+        <div class="project-img"><img src="images/project-5-digital.png" alt="Nexus Platform" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Nexus Platform</p><p class="project-cat">Digital UI/UX</p></div><span class="project-year">2024</span></div>
       </div>
-      <div class="project-card fade-in fade-in-d1">
-        <div class="project-img">
-          <img src="images/project-6-poster.png" alt="Sonic Frequencies" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Sonic Frequencies</p><p class="project-cat">Print &amp; Typography</p></div>
-          <span class="project-year">2022</span>
-        </div>
+      <div class="project-card fade-in delay-1">
+        <div class="project-img"><img src="images/project-6-poster.png" alt="Sonic Frequencies" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Sonic Frequencies</p><p class="project-cat">Print &amp; Typography</p></div><span class="project-year">2022</span></div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img">
-          <img src="images/project-7-wine.png" alt="Terroir Estates" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Terroir Estates</p><p class="project-cat">Brand Identity</p></div>
-          <span class="project-year">2023</span>
-        </div>
+        <div class="project-img"><img src="images/project-7-wine.png" alt="Terroir Estates" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Terroir Estates</p><p class="project-cat">Brand Identity</p></div><span class="project-year">2023</span></div>
       </div>
-      <div class="project-card fade-in fade-in-d1">
-        <div class="project-img">
-          <img src="images/project-8-3dtype.png" alt="Liquid Chrome" loading="lazy">
-          <div class="project-overlay"><span class="project-cta">View Project</span></div>
-        </div>
-        <div class="project-meta">
-          <div><p class="project-title">Liquid Chrome</p><p class="project-cat">Experimental 3D</p></div>
-          <span class="project-year">2024</span>
-        </div>
+      <div class="project-card fade-in delay-1">
+        <div class="project-img"><img src="images/project-8-3dtype.png" alt="Liquid Chrome" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
+        <div class="project-meta"><div><p class="project-title">Liquid Chrome</p><p class="project-cat">Experimental 3D</p></div><span class="project-year">2024</span></div>
       </div>
     </div>
-    <div class="works-archive">
-      <button class="btn-outline">View Archive</button>
+    <div class="works-cta">
+      <button class="btn-outline">View Full Archive</button>
     </div>
   </section>
 
   <!-- PROCESS -->
   <section id="process">
-    <h2 class="process-heading">The<br>Process</h2>
-    <div class="process-steps">
+    <div class="process-inner">
       <div class="fade-in">
-        <p class="step-num">01 /</p>
-        <h3 class="step-title">Discovery</h3>
-        <p class="step-desc">Deep diving into the brand's core truth, audience, and market landscape.</p>
+        <p class="ornament" style="margin-bottom:1.25rem">Approach</p>
+        <h2 class="process-heading">The <em>Process</em></h2>
       </div>
-      <div class="fade-in fade-in-d1">
-        <p class="step-num">02 /</p>
-        <h3 class="step-title">Concept</h3>
-        <p class="step-desc">Exploring multiple divergent visual directions and strategic pathways.</p>
-      </div>
-      <div class="fade-in fade-in-d2">
-        <p class="step-num">03 /</p>
-        <h3 class="step-title">Refinement</h3>
-        <p class="step-desc">Selecting the strongest route and meticulously crafting every touchpoint.</p>
-      </div>
-      <div class="fade-in fade-in-d3">
-        <p class="step-num">04 /</p>
-        <h3 class="step-title">Delivery</h3>
-        <p class="step-desc">Producing robust guidelines, assets, and final production files.</p>
+      <div class="process-steps">
+        <div class="fade-in">
+          <p class="step-num">01</p>
+          <h3 class="step-title">Discovery</h3>
+          <p class="step-desc">Understanding the brand's core truth, its audience, and the competitive landscape it operates within.</p>
+        </div>
+        <div class="fade-in delay-1">
+          <p class="step-num">02</p>
+          <h3 class="step-title">Concept</h3>
+          <p class="step-desc">Developing multiple divergent visual directions to explore the full range of strategic possibilities.</p>
+        </div>
+        <div class="fade-in delay-2">
+          <p class="step-num">03</p>
+          <h3 class="step-title">Refinement</h3>
+          <p class="step-desc">Selecting the strongest route and crafting every detail — from typeface to colour, spacing to tone.</p>
+        </div>
+        <div class="fade-in delay-3">
+          <p class="step-num">04</p>
+          <h3 class="step-title">Delivery</h3>
+          <p class="step-desc">Producing thorough brand guidelines, finished assets, and production-ready files for every medium.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <h2 class="contact-title">Let's<br>Talk</h2>
-    <p class="contact-sub">Currently accepting new projects for Q3. If you have a vision that needs visualization, drop a line.</p>
-    <a href="mailto:aaron.design@hotmail.com" class="contact-email">aaron.design@hotmail.com</a>
-    <div class="contact-footer">
-      <div class="social-links">
-        <a href="#">Instagram</a>
-        <a href="#">Behance</a>
-        <a href="#">LinkedIn</a>
+    <div class="contact-inner">
+      <p class="ornament" style="margin-bottom:1.5rem">Contact</p>
+      <h2 class="contact-title">Let's make something <em>worth keeping.</em></h2>
+      <p class="contact-sub">Currently accepting projects for Q3. If you have a vision that needs shaping, I'd love to hear about it.</p>
+      <a href="mailto:hello@alexmercer.design" class="btn-primary" style="font-size:0.95rem;padding:1rem 2rem">hello@alexmercer.design</a>
+      <div class="contact-footer">
+        <div class="social-links">
+          <a href="#">Instagram</a>
+          <a href="#">Behance</a>
+          <a href="#">LinkedIn</a>
+        </div>
+        <p class="copyright">&copy; 2026 Alex Mercer. All rights reserved.</p>
       </div>
-      <p class="copyright">&copy; 2026 Alex Mercer. All rights reserved.</p>
     </div>
   </section>
 
   <script>
+    // Sticky header
     const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 50);
+      header.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
+    // Scroll-in animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { threshold: 0.1, rootMargin: '-60px' });
+    }, { threshold: 0.08, rootMargin: '-40px' });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
