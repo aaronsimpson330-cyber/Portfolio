@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Mercer — Art Direction &amp; Graphic Design</title>
+  <title>Aaron Simpson — Graphic Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
@@ -286,20 +286,13 @@
     .project-card:hover .project-title { color: var(--primary); }
     .project-cat { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
     .project-year { font-family: monospace; font-size: 0.75rem; color: var(--muted); flex-shrink: 0; padding-top: 0.2rem; }
-    .works-cta { max-width: 72rem; margin: 4rem auto 0; display: flex; justify-content: center; }
-    .btn-outline {
-      border: 1px solid rgba(42,29,18,0.35);
-      color: var(--muted);
-      padding: 0.85rem 2.25rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      border-radius: 3px;
-      cursor: pointer;
-      background: transparent;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+	  
+ .project-img video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
     /* PROCESS */
     #process {
@@ -390,6 +383,13 @@
       .contact-footer { flex-direction: column; align-items: center; }
       .section-divider { padding: 0.75rem 1.25rem; }
     }
+  .disciplines-grid1 {      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 1.5rem;
+      list-style: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+}
   </style>
 </head>
 <body>
@@ -412,8 +412,8 @@
     </div>
     <div class="hero-content">
       <p class="ornament">Graphic Design</p>
-      <h1 class="hero-title">Designing brands<br><em>worth remembering.</em></h1>
-      <p class="hero-sub">Independent art director based in New York City, working with founders and studios to shape identities that endure.</p>
+      <h1 class="hero-title">Creating Designs&nbsp;<br><em>worth remembering.</em></h1>
+      <p class="hero-sub">Creative professional crafting visual solutions through typography color layout branding tools storytelling aesthetics and user focused design thinking</p>
       <div class="hero-actions">
         <a href="#works" class="btn-primary">View Selected Work</a>
         <a href="#contact" class="link-text">Get in touch</a>
@@ -427,7 +427,7 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="about-img fade-in">
-      <img src="images/alex-mercer.png" alt="Alex Mercer">
+      <img src="images/me.png" alt="Aaron Simpson">
     </div>
     <div class="about-text">
       <div class="fade-in delay-1">
@@ -438,10 +438,13 @@
       <div class="fade-in delay-2">
         <p class="disciplines-label">Disciplines</p>
         <ul class="disciplines-grid">
-          <li>Brand Identity</li><li>Art Direction</li>
-          <li>Typography</li><li>UI/UX Design</li>
-          <li>Motion Graphics</li><li>Packaging</li>
-          <li>Editorial Design</li><li>3D Concepting</li>
+          <li> Web Design</li>
+		  <li> UI/UX Design</li>
+          <li> Email Marketing</li>
+          <li> POS</li>
+          <li> Catalogues</li>
+          <li> Brand Identity</li>
+     
         </ul>
       </div>
     </div>
@@ -458,41 +461,48 @@
     </div>
     <div class="works-grid">
       <div class="project-card fade-in">
-        <div class="project-img"><img src="images/project-1-coffee.png" alt="Caffeine Culture" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Caffeine Culture</p><p class="project-cat">Branding &amp; Packaging</p></div><span class="project-year">2024</span></div>
+        <div class="project-img"><img src="images/emails.png" alt="Campaign Emails" loading="lazy"><div class="project-overlay"></div></div>
+        <div class="project-meta"><div><p class="project-title">Email Marketing</p><p class="project-cat">CRM Campaigns</p></div><span class="project-year">2026</span></div>
       </div>
       <div class="project-card fade-in delay-1">
-        <div class="project-img"><img src="images/project-2-editorial.png" alt="Vogue Avant-Garde" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Vogue Avant-Garde</p><p class="project-cat">Editorial Design</p></div><span class="project-year">2023</span></div>
+        <div class="project-img"><img src="images/catalogue.png" alt="Vogue Avant-Garde" loading="lazy"></div>
+        <div class="project-meta"><div><p class="project-title">Catalogue Design</p><p class="project-cat">Multimedia and Print based</p></div><span class="project-year">2026</span></div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img"><img src="images/project-3-motion.png" alt="Echo Dimensions" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Echo Dimensions</p><p class="project-cat">Motion Graphics</p></div><span class="project-year">2023</span></div>
+        <div class="project-img"><img src="images/hled.png" alt="Echo Dimensions" loading="lazy"><div class="project-overlay"></div></div>
+        <div class="project-meta"><div><p class="project-title">Web Design</p><p class="project-cat">Dealer website management</p></div><span class="project-year">2026</span></div>
+      </div>
+<div class="project-card fade-in delay-1">
+  <div class="project-img">
+    <video autoplay muted loop playsinline loading="lazy">
+      <source src="images/amazon.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="project-overlay"></div>
+  </div>
+
+  <div class="project-meta">
+    <div>
+      <p class="project-title">Web Design</p>
+      <p class="project-cat">Amazon Storefront</p>
+    </div>
+    <span class="project-year">2026</span>
+  </div>
+</div>
+      <div class="project-card fade-in">
+        <div class="project-img"><img src="images/banners.png" alt="Nexus Platform" loading="lazy"><div class="project-overlay"></div></div>
+        <div class="project-meta"><div><p class="project-title">Web Design</p><p class="project-cat">Promotional Banners</p></div><span class="project-year">2025</span></div>
       </div>
       <div class="project-card fade-in delay-1">
-        <div class="project-img"><img src="images/project-4-packaging.png" alt="Aura Skincare" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Aura Skincare</p><p class="project-cat">Packaging</p></div><span class="project-year">2024</span></div>
+        <div class="project-img"><img src="images/wall.png" alt="Sonic Frequencies" loading="lazy"><div class="project-overlay"></div></div>
+        <div class="project-meta"><div><p class="project-title">Print</p><p class="project-cat">Posters</p></div><span class="project-year">2025</span></div>
       </div>
       <div class="project-card fade-in">
-        <div class="project-img"><img src="images/project-5-digital.png" alt="Nexus Platform" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Nexus Platform</p><p class="project-cat">Digital UI/UX</p></div><span class="project-year">2024</span></div>
-      </div>
-      <div class="project-card fade-in delay-1">
-        <div class="project-img"><img src="images/project-6-poster.png" alt="Sonic Frequencies" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Sonic Frequencies</p><p class="project-cat">Print &amp; Typography</p></div><span class="project-year">2022</span></div>
-      </div>
-      <div class="project-card fade-in">
-        <div class="project-img"><img src="images/project-7-wine.png" alt="Terroir Estates" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Terroir Estates</p><p class="project-cat">Brand Identity</p></div><span class="project-year">2023</span></div>
-      </div>
-      <div class="project-card fade-in delay-1">
-        <div class="project-img"><img src="images/project-8-3dtype.png" alt="Liquid Chrome" loading="lazy"><div class="project-overlay"><span class="project-cta">View Project</span></div></div>
-        <div class="project-meta"><div><p class="project-title">Liquid Chrome</p><p class="project-cat">Experimental 3D</p></div><span class="project-year">2024</span></div>
+        <div class="project-img"><img src="images/roll.png" alt="Terroir Estates" loading="lazy"><div class="project-overlay"></div></div>
+        <div class="project-meta"><div><p class="project-title">Print</p><p class="project-cat">Roll up banners</p></div><span class="project-year">2023</span></div>
       </div>
     </div>
-    <div class="works-cta">
-      <button class="btn-outline">View Full Archive</button>
-    </div>
+  
   </section>
 
   <!-- PROCESS -->
@@ -532,15 +542,15 @@
     <div class="contact-inner">
       <p class="ornament" style="margin-bottom:1.5rem">Contact</p>
       <h2 class="contact-title">Let's make something <em>worth keeping.</em></h2>
-      <p class="contact-sub">Currently accepting projects for Q3. If you have a vision that needs shaping, I'd love to hear about it.</p>
-      <a href="mailto:hello@alexmercer.design" class="btn-primary" style="font-size:0.95rem;padding:1rem 2rem">hello@alexmercer.design</a>
+      <p class="contact-sub">If you have a vision that needs shaping, I'd love to hear about it.</p>
+      <a href="mailto:aaron.design@hotmail.com" class="btn-primary" style="font-size:0.95rem;padding:1rem 2rem">hello@aaron.design</a>
       <div class="contact-footer">
         <div class="social-links">
-          <a href="#">Instagram</a>
-          <a href="#">Behance</a>
-          <a href="#">LinkedIn</a>
+          <a href="#"></a>
+          <a href="#"></a>
+          <a href="#"></a>
         </div>
-        <p class="copyright">&copy; 2026 Alex Mercer. All rights reserved.</p>
+        <p class="copyright">&copy; 2026 Aaron Simpson. All rights reserved.</p>
       </div>
     </div>
   </section>
